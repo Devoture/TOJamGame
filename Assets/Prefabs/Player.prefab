@@ -1063,6 +1063,7 @@ GameObject:
   - component: {fileID: 114434260103830334}
   - component: {fileID: 195703137473164930}
   - component: {fileID: 114123210112057346}
+  - component: {fileID: 135053419675188660}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2177,6 +2178,8 @@ MonoBehaviour:
     type: 2}
   m_fireballSpawnPoint: {fileID: 4449360431158980}
   m_fireballSpeed: 5
+  m_heroicLeepSpeed: 5
+  m_blackholdCollider: {fileID: 135053419675188660}
 --- !u!114 &114434260103830334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2195,6 +2198,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479173088675066}
   m_Enabled: 1
+--- !u!135 &135053419675188660
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1981948349036346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7
+  m_Center: {x: 0, y: 0.91, z: 0}
 --- !u!137 &137577467873786372
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
