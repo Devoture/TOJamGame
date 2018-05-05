@@ -71,10 +71,17 @@ namespace UnityStandardAssets.Characters.ThirdPerson {
 			
 		}
 		void Chase(){
+			agent.speed = chaseSpeed;
+			agent.SetDestination(target.transform.position);
+			character.Move(agent.desiredVelocity, false, false);
 
 		}
 
 		void OnTriggerEnter(Collider coll){
+			if(coll.tag == "Player") {
+				state = basicAI.State.CHASE;
+				target = coll.gameObject;
+			}
 
 		}
 		
