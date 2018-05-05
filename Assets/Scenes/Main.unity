@@ -112,9 +112,6 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-<<<<<<< HEAD
-  m_NavMeshData: {fileID: 0}
-=======
   m_NavMeshData: {fileID: 23800000, guid: 37b97d581c4da184fb83fdfdf7152411, type: 2}
 --- !u!1 &11187659
 GameObject:
@@ -401,7 +398,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384,
     type: 2}
   m_PrefabInternal: {fileID: 2081048793}
->>>>>>> josh
 --- !u!1 &1356714716
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,11 +585,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 2}
       propertyPath: m_LocalPosition.y
-<<<<<<< HEAD
-      value: 0.04
-=======
       value: 0.514
->>>>>>> josh
       objectReference: {fileID: 0}
     - target: {fileID: 4081129071478060, guid: ffa08167d28cfd24dba0151a4c80f384, type: 2}
       propertyPath: m_LocalPosition.z
