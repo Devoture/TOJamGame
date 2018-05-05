@@ -7,10 +7,14 @@ public class ShootingAI : MonoBehaviour {
 	public float stoppingDistance;
 	public float retreatDistance;
 	public Transform player;
+	private float timeBetweenShots;
+	public float startTimeBetweenShots;
+	public GameObject projectile;
 
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindWithTag("Player").transform;
+		timeBetweenShots = startTimeBetweenShots;
 		
 	}
 	
@@ -25,5 +29,11 @@ public class ShootingAI : MonoBehaviour {
 			transform.position = Vector3.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
 		}
 		
+		if(timeBetweenShots <= 0){
+			Instantiate(projectile, transform.position, Quaternion.identity);
+			timeBetweenShots = startTimeBetweenShots;
+		} else {
+			timeBetweenShots -= Time.deltaTime;
+		}
 	}
 }
