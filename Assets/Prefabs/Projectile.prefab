@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33586039215907642}
   - component: {fileID: 135007020798495474}
   - component: {fileID: 23214562963304020}
+  - component: {fileID: 114831542570898272}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917274525246492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7875582, y: 5.3610888, z: -0.71929425}
+  m_LocalPosition: {x: -10.048506, y: 5.0610895, z: -3.3810816}
   m_LocalScale: {x: 0.50582826, y: 0.6946769, z: 0.5216181}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917274525246492}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114831542570898272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1917274525246492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0158a46851d07d84fade5c26e81dc66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
 --- !u!135 &135007020798495474
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -90,7 +103,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917274525246492}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
