@@ -17,11 +17,11 @@ public class ProjectileAI : MonoBehaviour {
 	void Update () {
 		transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 		if(transform.position.x == target.x && transform.position.y == target.y){
-			//DestroyProjectile();
+			DestroyProjectile();
 		}		
 	}
 
-	/*void OnTriggerEnter(Collider other) {
+	void OnTriggerEnter(Collider other) {
 		if(other.CompareTag("Player")){
 			DestroyProjectile();
 		}
@@ -29,5 +29,5 @@ public class ProjectileAI : MonoBehaviour {
 
 	void DestroyProjectile(){
 		Destroy(gameObject);
-	}*/
+	}
 }
