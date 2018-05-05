@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
-
+using System.Collections;
+using UnityEngine.AI; 
 public class ClicktoMove : MonoBehaviour {
 	NavMeshAgent agent;
 	bool hasMoved = false;
