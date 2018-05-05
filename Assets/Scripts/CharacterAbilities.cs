@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CharacterAbilities : MonoBehaviour {
 
@@ -12,11 +13,15 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_pullForce = 200.0f;
 	public float m_pushForce = 100.0f;
 	public bool m_isBlackhole = false;
+	public float m_rotationSpeed = 5.0f;
 
 	private bool m_heroicLeeping = false;
+	private NavMeshAgent agent;
+	private Animator m_animator;
 
 	void Start() {
-		
+		agent = GetComponent<NavMeshAgent>();
+		m_animator = GetComponent<Animator>();
 	}
 
 	void Update() {
@@ -65,10 +70,16 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	void Blink() {
+		agent.isStopped = true;
+		m_animator.SetBool("isMoving", false);
+		transform.LookAt(GetMousePos());
 		transform.position = GetMousePos();
+		agent.destination = GetMousePos();
 	}
 
 	void HeroicLeap() {
+		agent.isStopped = true;
+		m_animator.SetBool("isMoving", false);
 		transform.position = GetMousePos();
 	}
 
