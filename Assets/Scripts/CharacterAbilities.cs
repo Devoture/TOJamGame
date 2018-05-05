@@ -65,9 +65,7 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	void Blink() {
-		Camera.main.transform.position = this.transform.position;
 		transform.position = GetMousePos();
-
 	}
 
 	void HeroicLeap() {
@@ -79,14 +77,11 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	Vector3 GetMousePos() {
-		Plane zeroPlane = new Plane(Vector3.up, Vector3.zero);
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		float distance;
-		Vector3 outputPosition = Vector3.zero;;
-         
-        if(zeroPlane.Raycast(ray, out distance)) {
-             outputPosition = ray.origin + ray.direction * distance;
+		RaycastHit hit;
+		Vector3 mousePos = Vector3.zero;
+		if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
+			mousePos = hit.point;
 		}
-		return outputPosition;
+		return mousePos;
 	}
 }
