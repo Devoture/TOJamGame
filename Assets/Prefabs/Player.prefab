@@ -1060,8 +1060,8 @@ GameObject:
   - component: {fileID: 4652696126319360}
   - component: {fileID: 95104825802979018}
   - component: {fileID: 54736637209707240}
-  - component: {fileID: 114434260103830334}
   - component: {fileID: 195703137473164930}
+  - component: {fileID: 114491287614184814}
   - component: {fileID: 114123210112057346}
   - component: {fileID: 135053419675188660}
   m_Layer: 0
@@ -2155,7 +2155,7 @@ Animator:
   m_GameObject: {fileID: 1981948349036346}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8909e7aa923862f4abbfd053c0f0088e, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df92d66b8d8bfd94dbb903c41120263a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2180,7 +2180,7 @@ MonoBehaviour:
   m_fireballSpeed: 5
   m_heroicLeepSpeed: 5
   m_blackholdCollider: {fileID: 135053419675188660}
---- !u!114 &114434260103830334
+--- !u!114 &114491287614184814
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2191,6 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1acb6edb0cdd7c4b909bba5cf904d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
 --- !u!124 &124337213461079056
 Behaviour:
   m_ObjectHideFlags: 1
