@@ -8,7 +8,7 @@ public class StateGameIntro : GameState {
 
 	public override void Enter() { }
 	public override void Execute() {
-		if(m_countdown <= 0) {
+		if(m_countdown <= 0 || Input.anyKey) {
 			m_gm.NewGameState(m_gm.m_stateGameMenu);
 			m_gm.UpdateFSM(GameStates.MENU);
 		} else {
@@ -16,5 +16,7 @@ public class StateGameIntro : GameState {
 		}
 	 }
 	public override void Exit() { }
+
+	
 
 }
