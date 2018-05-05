@@ -65,7 +65,9 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	void Blink() {
+		Camera.main.transform.position = this.transform.position;
 		transform.position = GetMousePos();
+
 	}
 
 	void HeroicLeap() {
