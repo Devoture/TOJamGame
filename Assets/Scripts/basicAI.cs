@@ -48,14 +48,28 @@ namespace UnityStandardAssets.Characters.ThirdPerson {
 						Chase();
 						break;
 				}
+				yield return null;
 			}
 
 		}
 	
 		void Patrol(){
+			agent.speed = patrolSpeed;
+			if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2){
+				agent.SetDestination(waypoints[waypointInd].transform.position);
+				character.Move(agent.desiredVelocity, false, false);
+			}else if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 2 ){
+				waypointInd +=1;
+				if(waypointInd > waypoints.Length) {
+					waypointInd = 0;
+				}
+			}else {
+				character.Move(Vector3.zero, false, false);
+			}
 
+
+			
 		}
-
 		void Chase(){
 
 		}
