@@ -2207,6 +2207,7 @@ MonoBehaviour:
   m_maxMana: 100
   m_isPlayer: 1
   m_manaFill: {fileID: 0}
+  m_manaPerSecond: 5
 --- !u!114 &114123210112057346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2218,7 +2219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f683f5168acf241b5caca0ce49f91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fireballPrefab: {fileID: 1177857228168710, guid: a44cf3d96eb0a2a4a931f1be0c6dcd1f,
+  m_fireballPrefab: {fileID: 1105812798509924, guid: e93b6bb75d87a004a9d7fc871967f6b0,
     type: 2}
   m_fireballSpawnPoint: {fileID: 4449360431158980}
   m_fireballSpeed: 5
@@ -2234,6 +2235,10 @@ MonoBehaviour:
   m_dashSpeed: 40
   m_normalSpeed: 5
   m_blackholeDamage: 100
+  m_fireballMana: 10
+  m_blackholeMana: 40
+  m_blinkMana: 20
+  m_dashStrikeMana: 10
 --- !u!114 &114401021530398264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2273,7 +2278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 500
   m_hasBeenHit: 0
-  m_colliderScript: {fileID: 0}
   m_isPlayer: 1
   M_healthfill: {fileID: 0}
 --- !u!114 &114491287614184814
