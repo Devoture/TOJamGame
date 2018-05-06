@@ -34,7 +34,7 @@ public class ClicktoMove : MonoBehaviour {
 			return; 
 
 		Vector3 direction = (destination - transform.position).normalized;
-		Quaternion qDir= Quaternion.LookRotation(direction);
+		Quaternion qDir = Quaternion.LookRotation(direction);
 		transform.rotation = Quaternion.Slerp(transform.rotation, qDir, Time.deltaTime * m_rotationSpeed);
 	}
 }

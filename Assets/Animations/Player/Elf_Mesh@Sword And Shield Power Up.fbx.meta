@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 84314ea58e051534ba7ee87aa0cec32d
-timeCreated: 1525559036
+guid: 65f06e412c507a343acf80b7e652394c
+timeCreated: 1525564364
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -141,7 +141,7 @@ ModelImporter:
     400130: Bip001 Spine1
     400132: Bip001 Spine2
     400134: //RootNode
-    7400000: mixamo.com
+    7400000: Sword And Shield Power Up
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -171,17 +171,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Sword And Shield Power Up
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 453
+      lastFrame: 142
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -648,15 +648,15 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Great Sword Idle(Clone)
+    - name: Elf_Mesh@Sword And Shield Power Up(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0.0026807918, y: -0.1363684, z: -0.01046736, w: 0.9905993}
+      rotation: {x: -0.03343343, y: -0.45860443, z: 0.008140696, w: 0.8879741}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001
-      parentName: Great Sword Idle(Clone)
-      position: {x: -0.003665578, y: 0.8314488, z: -0.018887255}
-      rotation: {x: -0.40258372, y: 0.53619224, z: 0.5898557, w: 0.44999394}
+      parentName: Elf_Mesh@Sword And Shield Power Up(Clone)
+      position: {x: -0.011158561, y: 0.73027444, z: -0.008060161}
+      rotation: {x: -0.15676923, y: 0.64704007, z: 0.6953614, w: 0.27061984}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Footsteps
       parentName: Bip001
@@ -665,7 +665,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Pelvis
       parentName: Bip001
-      position: {x: 0.0121585075, y: 0.018210053, z: 0.112677254}
+      position: {x: 0.023289733, y: 0.011941969, z: 0.21583503}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Spine

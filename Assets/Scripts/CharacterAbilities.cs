@@ -26,7 +26,7 @@ public class CharacterAbilities : MonoBehaviour {
 
 	void Update() {
 		if(Input.GetKeyDown(KeyCode.Q)) {
-			FireBall();
+			m_animator.SetTrigger("spellCast");
 		}
 
 		if(Input.GetKeyDown(KeyCode.W)) {
@@ -34,7 +34,7 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.E)) {
-			HeroicLeap();
+			m_animator.SetTrigger("hLeap");
 		}
 
 		if(Input.GetKeyDown(KeyCode.R)) {
@@ -63,13 +63,17 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 	}
 
-	void FireBall() {
+	public void FireBall() {
+		agent.isStopped = true;
+		m_animator.SetBool("isMoving", false);
+		transform.LookAt(GetMousePos());
+		agent.destination = GetMousePos();
 		GameObject fireball = Instantiate(m_fireballPrefab, m_fireballSpawnPoint.position, Quaternion.identity);
 		fireball.transform.LookAt(GetMousePos());
 		fireball.GetComponent<Rigidbody>().velocity = fireball.transform.forward * m_fireballSpeed;
 	}
 
-	void Blink() {
+	public void Blink() {
 		agent.isStopped = true;
 		m_animator.SetBool("isMoving", false);
 		transform.LookAt(GetMousePos());
@@ -77,13 +81,13 @@ public class CharacterAbilities : MonoBehaviour {
 		agent.destination = GetMousePos();
 	}
 
-	void HeroicLeap() {
+	public void HeroicLeap() {
 		agent.isStopped = true;
 		m_animator.SetBool("isMoving", false);
 		transform.position = GetMousePos();
 	}
 
-	void Blackhole() {
+	public void Blackhole() {
 		m_isBlackhole = true;
 	}
 
