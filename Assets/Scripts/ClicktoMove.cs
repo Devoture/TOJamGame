@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+<<<<<<< HEAD
 using System.Collections;
 using UnityEngine.AI; 
 public class ClicktoMove : MonoBehaviour {
@@ -7,6 +8,13 @@ public class ClicktoMove : MonoBehaviour {
 	public bool m_disableMovement;
 
 	private NavMeshAgent agent;
+=======
+using UnityEngine.AI;
+
+public class ClicktoMove : MonoBehaviour {
+	NavMeshAgent agent;
+	bool hasMoved = false;
+>>>>>>> Prototype
 	private Animator m_animator;
 	
 	void Start() {
