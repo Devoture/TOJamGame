@@ -2211,10 +2211,7 @@ MonoBehaviour:
   m_pushForce: 100
   m_isBlackhole: 0
   m_rotationSpeed: 5
-<<<<<<< HEAD:Assets/Textures/Player.prefab
-=======
   m_swordCollider: {fileID: 65027183945696612}
->>>>>>> josh:Assets/Prefabs/Player.prefab
 --- !u!114 &114434260103830334
 MonoBehaviour:
   m_ObjectHideFlags: 0
