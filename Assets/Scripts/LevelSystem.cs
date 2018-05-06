@@ -9,35 +9,32 @@ public class LevelSystem : MonoBehaviour {
 	public Text m_leveldisplay;
 	private float m_currentXP;
 	private float m_totalLevel;
+	private float m_tmpXp;
 	public GameObject m_SkillTree;
-	// Use this for initialization
+	
 	void Start () {
 		m_currentXP = m_maxXP;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.A)){
-			GainXp(100);
+			GainXp(311);
 		}
 	}
 
 	public void GainXp(float xpPoints) {
-			m_currentXP += xpPoints;
+		m_currentXP += xpPoints;
 
-			if(m_currentXP >= m_maxXP) {
-				LevelUp();
-			}
-
-			UpdateHUD();
-			
-
-		
+		if(m_currentXP >= m_maxXP) {
+			m_tmpXp = m_currentXP - m_maxXP;
+			LevelUp();
+		}
+		UpdateHUD();
 	}
 
 	public void LevelUp(){
 		m_totalLevel++;
-		m_currentXP = 0;
+		m_currentXP = m_tmpXp;
 		UpdateHUD();
 		// Time.timeScale = 0;
         // m_SkillTree.SetActive(true);
