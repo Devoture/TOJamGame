@@ -14,6 +14,7 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_pushForce = 100.0f;
 	public bool m_isBlackhole = false;
 	public float m_rotationSpeed = 5.0f;
+	public Collider m_swordCollider;
 
 	private bool m_heroicLeeping = false;
 	private NavMeshAgent agent;
@@ -39,6 +40,10 @@ public class CharacterAbilities : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.R)) {
 			Blackhole();
+		}
+
+		if(Input.GetMouseButtonDown(1)) {
+			AutoAttack();
 		}
 	}
 
@@ -89,6 +94,22 @@ public class CharacterAbilities : MonoBehaviour {
 
 	public void Blackhole() {
 		m_isBlackhole = true;
+	}
+
+	public void AutoAttack() {
+		m_animator.SetBool("isAuto", true);
+		m_swordCollider.enabled = true;
+	}
+
+	public void StopAuto() {
+		m_animator.SetBool("isAuto", false);
+		m_swordCollider.enabled = false;
+		for(int i = 0; i < m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i++) {
+			enemy.GetComponent<Health>().m_hasBeenHit = false;
+			m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.RemoveAt(i);
+			Debug.Log(enemy.name);
+			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
+		}
 	}
 
 	Vector3 GetMousePos() {

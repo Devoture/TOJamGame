@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour {
 
 	public float m_maxHealth = 100.0f;
+	public bool m_hasBeenHit;
 	
 	private float m_currHealth;
 
@@ -13,10 +14,14 @@ public class Health : MonoBehaviour {
 	}
 
 	public void TakeDamage(float damage) {
-		m_currHealth -= damage;
-		if(m_currHealth <= 0) {
-			m_currHealth = 0;
-			Dead();
+		if(!m_hasBeenHit) {
+			m_currHealth -= damage;
+			m_hasBeenHit = true;
+			if(m_currHealth <= 0) {
+				m_currHealth = 0;
+				Dead();
+			}
+			Debug.Log(m_currHealth);
 		}
 	}
 
