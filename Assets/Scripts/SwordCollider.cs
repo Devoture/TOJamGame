@@ -6,7 +6,7 @@ public class SwordCollider : MonoBehaviour {
 
 	public CharacterAbilities m_abilitiesScript;
 	public List<GameObject> m_enemiesHit;
-	private int m_enemyIndex = 0;
+	public int m_enemyIndex = 0;
 
 	void Start() {
 		m_enemiesHit = new List<GameObject>();
@@ -17,6 +17,7 @@ public class SwordCollider : MonoBehaviour {
 			Health health = other.GetComponent<Health>();
 			health.TakeDamage(50);
 			m_enemiesHit.Add(other.gameObject);
+			m_enemyIndex++;
 		}
 	}
 }

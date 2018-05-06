@@ -41,8 +41,6 @@ public class Health : MonoBehaviour {
 	}
 
 	void Dead() {
-		m_colliderScript.m_enemiesHit.Remove(this.gameObject);
-		Destroy(this.gameObject);
 	}
 
 	void UpdateHUD() {

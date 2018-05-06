@@ -109,6 +109,10 @@ public class CharacterAbilities : MonoBehaviour {
 			Debug.Log(enemy.name);
 			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
 		}
+		
+		for(int i = m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i > 0; i--) {
+			m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.RemoveAt(0);
+		}
 	}
 
 	Vector3 GetMousePos() {
