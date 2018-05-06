@@ -104,9 +104,9 @@ public class CharacterAbilities : MonoBehaviour {
 	public void StopAuto() {
 		m_animator.SetBool("isAuto", false);
 		m_swordCollider.enabled = false;
-		for(int i = 0; i < m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i++) {
+		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
 			enemy.GetComponent<Health>().m_hasBeenHit = false;
-			m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.RemoveAt(i);
+			m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Remove(enemy);
 			Debug.Log(enemy.name);
 			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
 		}
