@@ -7,7 +7,6 @@ public class Health : MonoBehaviour {
 
 	public float m_maxHealth = 100.0f;
 	public bool m_hasBeenHit;
-	public SwordCollider m_colliderScript;
 	public bool m_isPlayer;
 
 	public Image M_healthfill;

@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class ClicktoMove : MonoBehaviour {
 
 	public float m_rotationSpeed = 5.0f;
+	public bool m_disableMovement;
 
 	private NavMeshAgent agent;
 	private Animator m_animator;
@@ -15,6 +16,9 @@ public class ClicktoMove : MonoBehaviour {
 	}
 	
 	void Update() {
+		if(m_disableMovement)
+			return;
+
 		if (Input.GetMouseButton(0)) {
 			agent.isStopped = false;
 			RaycastHit hit;

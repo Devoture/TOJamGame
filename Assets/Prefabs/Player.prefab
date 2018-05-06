@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 114449520225905984}
   - component: {fileID: 114012951606514222}
   - component: {fileID: 136711635344305098}
+  - component: {fileID: 114401021530398264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1567,7 +1568,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1150219739457864}
   m_LocalRotation: {x: -0.09510386, y: 0.053752817, z: -0.9619296, w: 0.250514}
-  m_LocalPosition: {x: 1.7425895, y: -0.07059336, z: 3.6742961}
+  m_LocalPosition: {x: -0.18, y: 0.073, z: -0.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4776114086248510}
@@ -2206,6 +2207,7 @@ MonoBehaviour:
   m_maxMana: 100
   m_isPlayer: 1
   m_manaFill: {fileID: 0}
+  m_manaPerSecond: 5
 --- !u!114 &114123210112057346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2217,17 +2219,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f683f5168acf241b5caca0ce49f91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fireballPrefab: {fileID: 1177857228168710, guid: a44cf3d96eb0a2a4a931f1be0c6dcd1f,
+  m_fireballPrefab: {fileID: 1105812798509924, guid: e93b6bb75d87a004a9d7fc871967f6b0,
     type: 2}
   m_fireballSpawnPoint: {fileID: 4449360431158980}
-  m_fireballSpeed: 5
+  m_fireballSpeed: 30
   m_heroicLeepSpeed: 5
   m_pullRadius: 20
   m_pullForce: 500
   m_pushForce: 100
   m_isBlackhole: 0
-  m_rotationSpeed: 5
   m_swordCollider: {fileID: 65027183945696612}
+  m_damage: 0
+  m_dashAttack: 0
+  m_dashTimeLength: 1
+  m_dashSpeed: 40
+  m_normalSpeed: 5
+  m_blackholeDamage: 100
+  m_fireballMana: 10
+  m_blackholeMana: 40
+  m_blinkMana: 20
+  m_dashStrikeMana: 10
+  m_knockBackTimer: 2
+  m_blackholeCD: 5
+  m_fireballCD: 5
+  m_dashStrikeCD: 5
+  m_blinkCD: 5
+  m_canBlink: 1
+  m_canDash: 1
+  m_canBlackhole: 1
+  m_canFireball: 1
+--- !u!114 &114401021530398264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1981948349036346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748c5558cf1fcda449dad8b7f9288d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxXP: 1000
+  m_XPFill: {fileID: 0}
+  m_leveldisplay: {fileID: 0}
+  m_SkillTree: {fileID: 0}
 --- !u!114 &114434260103830334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2252,7 +2287,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 500
   m_hasBeenHit: 0
-  m_colliderScript: {fileID: 0}
   m_isPlayer: 1
   M_healthfill: {fileID: 0}
 --- !u!114 &114491287614184814
@@ -2267,6 +2301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rotationSpeed: 15
+  m_disableMovement: 0
 --- !u!114 &114948818203265986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2280,7 +2315,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_abilitiesScript: {fileID: 114123210112057346}
   m_enemiesHit: []
-  m_enemyIndex: 0
 --- !u!136 &136711635344305098
 CapsuleCollider:
   m_ObjectHideFlags: 1
