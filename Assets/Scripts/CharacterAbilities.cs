@@ -24,6 +24,7 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_blackholeMana = 40.0f;
 	public float m_blinkMana = 20.0f;
 	public float m_dashStrikeMana = 10.0f;
+	public float m_knockBackTimer = 2.0f;
 
 
 	private bool m_heroicLeeping = false;
@@ -78,17 +79,6 @@ public class CharacterAbilities : MonoBehaviour {
 				}
 			}
 		}
-
-		if(Input.GetKeyDown(KeyCode.F)) {
-			m_isBlackhole = false;
-			foreach (Collider collider in Physics.OverlapSphere(transform.position, m_pullRadius)) {
-				if(collider.gameObject.tag == "Enemy") {
-					Vector3 forceDirection = transform.position + collider.transform.position;
-					collider.GetComponent<Rigidbody>().AddForce(forceDirection * m_pushForce * Time.fixedDeltaTime);
-					collider.GetComponent<Health>().TakeDamage(m_blackholeDamage);
-				}
-			}
-		}
 	}
 
 	public void FireBall() {
@@ -123,6 +113,7 @@ public class CharacterAbilities : MonoBehaviour {
 		if(m_manaScript.GetMana() >= m_blackholeMana) {
 			m_manaScript.UseMana(m_blackholeMana);
 			m_isBlackhole = true;
+			StartCoroutine(BlackholeKnockbackTimer(m_knockBackTimer));
 		}
 	}
 
@@ -174,6 +165,16 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 	}
 
+	public void BlackholeKnockback() {
+		foreach (Collider collider in Physics.OverlapSphere(transform.position, m_pullRadius)) {
+			if(collider.gameObject.tag == "Enemy") {
+				Vector3 forceDirection = transform.position + collider.transform.position;
+				collider.GetComponent<Rigidbody>().AddForce(forceDirection * m_pushForce * Time.fixedDeltaTime);
+				collider.GetComponent<Health>().TakeDamage(m_blackholeDamage);
+			}
+		}
+	}
+
 	Vector3 GetMousePos() {
 		RaycastHit hit;
 		Vector3 mousePos = Vector3.zero;
@@ -186,5 +187,11 @@ public class CharacterAbilities : MonoBehaviour {
 	private IEnumerator DashTimer(float waitTime) {
 		yield return new WaitForSeconds(waitTime);
 		DashEnd();
+    }
+
+	private IEnumerator BlackholeKnockbackTimer(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		m_isBlackhole = false;
+		m_animator.SetTrigger("afterBlackhole");
     }
 }

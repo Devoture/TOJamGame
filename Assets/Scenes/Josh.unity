@@ -5352,7 +5352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 100
   m_hasBeenHit: 0
-  m_colliderScript: {fileID: 0}
   m_isPlayer: 0
   M_healthfill: {fileID: 0}
 --- !u!54 &686904784
@@ -5850,16 +5849,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114012951606514222, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
-        type: 2}
-      propertyPath: m_manaFill
-      value: 
-      objectReference: {fileID: 1762679625}
-    - target: {fileID: 114449520225905984, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
-        type: 2}
-      propertyPath: M_healthfill
-      value: 
-      objectReference: {fileID: 1804110530}
     - target: {fileID: 114401021530398264, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
         type: 2}
       propertyPath: m_XPFill
@@ -5870,6 +5859,16 @@ Prefab:
       propertyPath: m_leveldisplay
       value: 
       objectReference: {fileID: 1796181673}
+    - target: {fileID: 114449520225905984, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
+        type: 2}
+      propertyPath: M_healthfill
+      value: 
+      objectReference: {fileID: 1804110530}
+    - target: {fileID: 114012951606514222, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
+        type: 2}
+      propertyPath: m_manaFill
+      value: 
+      objectReference: {fileID: 1762679625}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2abb91e4e404b9845a8ea3b28aadc22b, type: 2}
   m_IsPrefabParent: 0
@@ -6024,7 +6023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 100
   m_hasBeenHit: 0
-  m_colliderScript: {fileID: 0}
   m_isPlayer: 0
   M_healthfill: {fileID: 0}
 --- !u!54 &896775622
@@ -9913,7 +9911,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 100
   m_hasBeenHit: 0
-  m_colliderScript: {fileID: 0}
   m_isPlayer: 0
   M_healthfill: {fileID: 0}
 --- !u!54 &966486643
@@ -10095,7 +10092,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 100
   m_hasBeenHit: 0
-  m_colliderScript: {fileID: 0}
   m_isPlayer: 0
   M_healthfill: {fileID: 0}
 --- !u!54 &1051057594
