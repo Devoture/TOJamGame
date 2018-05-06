@@ -13,22 +13,25 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_pullForce = 200.0f;
 	public float m_pushForce = 100.0f;
 	public bool m_isBlackhole = false;
-	public float m_rotationSpeed = 5.0f;
 	public Collider m_swordCollider;
 	public float m_damage;
 	public bool m_dashAttack;
 	public float m_dashTimeLength = 1.0f;
 	public float m_dashSpeed = 40.0f;
+	public float m_normalSpeed;
+	public float m_blackholeDamage = 100;
 
 	private bool m_heroicLeeping = false;
 	private NavMeshAgent agent;
 	private Animator m_animator;
 	private Rigidbody m_rb;
+	private ClicktoMove m_movementScript;
 
 	void Start() {
 		agent = GetComponent<NavMeshAgent>();
 		m_animator = GetComponent<Animator>();
 		m_rb = GetComponent<Rigidbody>();
+		m_movementScript = GetComponent<ClicktoMove>();
 	}
 
 	void Update() {
@@ -53,7 +56,7 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 
 		if(m_dashAttack) {
-			transform.Translate(Vector3.forward * m_dashSpeed);
+			agent.speed = m_dashSpeed;
 		}
 	}
 
@@ -73,6 +76,7 @@ public class CharacterAbilities : MonoBehaviour {
 				if(collider.gameObject.tag == "Enemy") {
 					Vector3 forceDirection = transform.position + collider.transform.position;
 					collider.GetComponent<Rigidbody>().AddForce(forceDirection * m_pushForce * Time.fixedDeltaTime);
+					collider.GetComponent<Health>().TakeDamage(m_blackholeDamage);
 				}
 			}
 		}
@@ -80,8 +84,8 @@ public class CharacterAbilities : MonoBehaviour {
 
 	public void FireBall() {
 		agent.isStopped = true;
-		m_animator.SetBool("isMoving", false);
 		transform.LookAt(GetMousePos());
+		m_animator.SetBool("isMoving", false);
 		agent.destination = GetMousePos();
 		GameObject fireball = Instantiate(m_fireballPrefab, m_fireballSpawnPoint.position, Quaternion.identity);
 		fireball.transform.LookAt(GetMousePos());
@@ -107,6 +111,7 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void DashAttack() {
+		m_movementScript.m_disableMovement = true;
 		transform.LookAt(GetMousePos());
 		agent.destination = GetMousePos();
 		m_dashAttack = true;
@@ -117,13 +122,13 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void DashEnd() {
+		m_movementScript.m_disableMovement = false;
+		agent.speed = m_normalSpeed;
 		m_dashAttack = false;
 		m_animator.SetBool("isDashing", false);
 		m_swordCollider.enabled = false;
 		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
 			enemy.GetComponent<Health>().m_hasBeenHit = false;
-			Debug.Log(enemy.name);
-			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
 		}
 		
 		for(int i = m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i > 0; i--) {
@@ -142,8 +147,6 @@ public class CharacterAbilities : MonoBehaviour {
 		m_swordCollider.enabled = false;
 		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
 			enemy.GetComponent<Health>().m_hasBeenHit = false;
-			Debug.Log(enemy.name);
-			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
 		}
 		
 		for(int i = m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i > 0; i--) {
