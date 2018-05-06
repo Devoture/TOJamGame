@@ -11,7 +11,10 @@ public float m_maxMana = 100.0f;
 
 	public Image m_manaFill;
 	
+
+	
 	private float m_currentMana;
+
 
 	void Start() {
 		m_currentMana = m_maxMana;

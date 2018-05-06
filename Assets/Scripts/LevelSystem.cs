@@ -9,6 +9,7 @@ public class LevelSystem : MonoBehaviour {
 	public Text m_leveldisplay;
 	private float m_currentXP;
 	private float m_totalLevel;
+	public GameObject m_SkillTree;
 	// Use this for initialization
 	void Start () {
 		m_currentXP = m_maxXP;
@@ -38,6 +39,8 @@ public class LevelSystem : MonoBehaviour {
 		m_totalLevel++;
 		m_currentXP = 0;
 		UpdateHUD();
+		// Time.timeScale = 0;
+        // m_SkillTree.SetActive(true);
 	}
 	public void UpdateHUD (){
 		m_leveldisplay.text ="Level: " +  m_totalLevel;
