@@ -6,6 +6,7 @@ public class Health : MonoBehaviour {
 
 	public float m_maxHealth = 100.0f;
 	public bool m_hasBeenHit;
+	public SwordCollider m_colliderScript;
 	
 	private float m_currHealth;
 
@@ -33,6 +34,7 @@ public class Health : MonoBehaviour {
 	}
 
 	void Dead() {
-		Debug.Log("dead");
+		m_colliderScript.m_enemiesHit.Remove(this.gameObject);
+		Destroy(this.gameObject);
 	}
 }

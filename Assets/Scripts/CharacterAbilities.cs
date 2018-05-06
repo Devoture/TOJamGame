@@ -106,7 +106,6 @@ public class CharacterAbilities : MonoBehaviour {
 		m_swordCollider.enabled = false;
 		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
 			enemy.GetComponent<Health>().m_hasBeenHit = false;
-			m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Remove(enemy);
 			Debug.Log(enemy.name);
 			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
 		}
