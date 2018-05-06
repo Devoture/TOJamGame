@@ -2236,6 +2236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 500
   m_hasBeenHit: 0
+  m_colliderScript: {fileID: 0}
+  m_isPlayer: 1
 --- !u!114 &114491287614184814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2260,6 +2262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_abilitiesScript: {fileID: 114123210112057346}
+  m_enemiesHit: []
 --- !u!137 &137577467873786372
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
