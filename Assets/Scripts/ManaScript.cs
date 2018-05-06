@@ -22,6 +22,9 @@ public float m_maxMana = 100.0f;
 		m_timer += Time.deltaTime;
 		if(m_timer >= 1) {
 			m_currentMana += m_manaPerSecond;
+			if(m_currentMana >= m_maxMana) {
+				m_currentMana = m_maxMana;
+			}
 			UpdateHUD();
 			m_timer = 0;
 		}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class CharacterAbilities : MonoBehaviour {
 
@@ -33,6 +34,10 @@ public class CharacterAbilities : MonoBehaviour {
 	public bool m_canDash = true;
 	public bool m_canBlackhole = true;
 	public bool m_canFireball = true;
+	public Image  m_fireballMask;
+	public Image  m_dashMask;
+	public Image  m_blinkmask;
+	public Image  m_blackHoleMask;
 
 
 	private bool m_heroicLeeping = false;
@@ -51,7 +56,7 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	void Update() {
-		if(Input.GetKeyDown(KeyCode.Q) && m_canFireball) {
+		if(Input.GetKeyDown(KeyCode.W) && m_canFireball) {
 			if(m_manaScript.GetMana() >= m_fireballMana) {
 				m_animator.SetTrigger("spellCast");
 				m_canFireball = false;
@@ -59,11 +64,11 @@ public class CharacterAbilities : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.W) && m_canBlink) {
+		if(Input.GetKeyDown(KeyCode.E) && m_canBlink) {
 			Blink();
 		}
 
-		if(Input.GetKeyDown(KeyCode.E) && m_canDash) {
+		if(Input.GetKeyDown(KeyCode.Q) && m_canDash) {
 			DashAttack();
 		}
 
@@ -228,6 +233,9 @@ public class CharacterAbilities : MonoBehaviour {
     }
 
 	private IEnumerator BlinkCD(float waitTime) {
+		// while(!m_canBlink){
+		// 	m_fireballMask.fillAmount =0;
+		// }
 		yield return new WaitForSeconds(waitTime);
 		m_canBlink = true;
     }
