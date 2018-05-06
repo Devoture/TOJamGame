@@ -15,7 +15,7 @@ public class SwordCollider : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(other.tag == "Enemy" && !other.GetComponent<Health>().m_hasBeenHit) {
 			Health health = other.GetComponent<Health>();
-			health.TakeDamage(50);
+			health.TakeDamage(m_abilitiesScript.m_damage);
 			m_enemiesHit.Add(other.gameObject);
 			m_enemyIndex++;
 		}
