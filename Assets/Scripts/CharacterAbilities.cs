@@ -19,24 +19,33 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_dashTimeLength = 1.0f;
 	public float m_dashSpeed = 40.0f;
 	public float m_normalSpeed;
-	public float m_blackholeDamage = 100;
+	public float m_blackholeDamage = 100.0f;
+	public float m_fireballMana = 10.0f;
+	public float m_blackholeMana = 40.0f;
+	public float m_blinkMana = 20.0f;
+	public float m_dashStrikeMana = 10.0f;
+
 
 	private bool m_heroicLeeping = false;
 	private NavMeshAgent agent;
 	private Animator m_animator;
 	private Rigidbody m_rb;
 	private ClicktoMove m_movementScript;
+	private ManaScript m_manaScript;
 
 	void Start() {
 		agent = GetComponent<NavMeshAgent>();
 		m_animator = GetComponent<Animator>();
 		m_rb = GetComponent<Rigidbody>();
 		m_movementScript = GetComponent<ClicktoMove>();
+		m_manaScript = GetComponent<ManaScript>();
 	}
 
 	void Update() {
 		if(Input.GetKeyDown(KeyCode.Q)) {
-			m_animator.SetTrigger("spellCast");
+			if(m_manaScript.GetMana() >= m_fireballMana) {
+				m_animator.SetTrigger("spellCast");
+			}
 		}
 
 		if(Input.GetKeyDown(KeyCode.W)) {
@@ -83,6 +92,7 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void FireBall() {
+		m_manaScript.UseMana(m_fireballMana);
 		agent.isStopped = true;
 		transform.LookAt(GetMousePos());
 		m_animator.SetBool("isMoving", false);
@@ -93,11 +103,14 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void Blink() {
-		agent.isStopped = true;
-		m_animator.SetBool("isMoving", false);
-		transform.LookAt(GetMousePos());
-		transform.position = GetMousePos();
-		agent.destination = GetMousePos();
+		if(m_manaScript.GetMana() >= m_blinkMana) {
+			m_manaScript.UseMana(m_blinkMana);
+			agent.isStopped = true;
+			m_animator.SetBool("isMoving", false);
+			transform.LookAt(GetMousePos());
+			transform.position = GetMousePos();
+			agent.destination = GetMousePos();
+		}
 	}
 
 	public void HeroicLeap() {
@@ -107,18 +120,25 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void Blackhole() {
-		m_isBlackhole = true;
+		if(m_manaScript.GetMana() >= m_blackholeMana) {
+			m_manaScript.UseMana(m_blackholeMana);
+			m_isBlackhole = true;
+		}
 	}
 
 	public void DashAttack() {
-		m_movementScript.m_disableMovement = true;
-		transform.LookAt(GetMousePos());
-		agent.destination = GetMousePos();
-		m_dashAttack = true;
-		StartCoroutine(DashTimer(m_dashTimeLength));
-		m_damage = 100.0f;
-		m_animator.SetBool("isDashing", true);
-		m_swordCollider.enabled = true;
+		if(m_manaScript.GetMana() >= m_dashStrikeMana) {
+			m_manaScript.UseMana(m_dashStrikeMana);
+			agent.isStopped = false;
+			m_movementScript.m_disableMovement = true;
+			transform.LookAt(GetMousePos());
+			agent.destination = GetMousePos();
+			m_dashAttack = true;
+			StartCoroutine(DashTimer(m_dashTimeLength));
+			m_damage = 100.0f;
+			m_animator.SetBool("isDashing", true);
+			m_swordCollider.enabled = true;
+		}
 	}
 
 	public void DashEnd() {

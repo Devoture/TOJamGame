@@ -49,4 +49,8 @@ public float m_maxMana = 100.0f;
 	void UpdateHUD() {
 		m_manaFill.fillAmount = (float)m_currentMana / (float)m_maxMana;
 	}
+
+	public float GetMana() {
+		return m_currentMana;
+	}
 }
