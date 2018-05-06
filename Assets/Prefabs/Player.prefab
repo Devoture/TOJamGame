@@ -2222,7 +2222,7 @@ MonoBehaviour:
   m_fireballPrefab: {fileID: 1105812798509924, guid: e93b6bb75d87a004a9d7fc871967f6b0,
     type: 2}
   m_fireballSpawnPoint: {fileID: 4449360431158980}
-  m_fireballSpeed: 5
+  m_fireballSpeed: 30
   m_heroicLeepSpeed: 5
   m_pullRadius: 20
   m_pullForce: 500
