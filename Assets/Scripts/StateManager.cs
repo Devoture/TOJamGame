@@ -7,6 +7,8 @@ public class StateManager : MonoBehaviour {
 	public GameObject[] m_gameState;
 
 	private GameStates m_activeState;
+
+	public OpenMenuDoor m_menuDoor;
 	private int m_numStates;
 	
 	void Start () {
@@ -26,11 +28,20 @@ public class StateManager : MonoBehaviour {
 	}
 	
 	public void PlayGame() {
-		GameManager.Instance.m_stateGameMenu.PlayGame();
+		StartCoroutine(openDoor());
 		//ChangeState(GameStates.PLAY);
 	}
 
 	public void QuitGame() {
 		GameManager.Instance.m_stateGameMenu.QuitGame();
 	}
+
+
+	IEnumerator openDoor()
+    {
+        m_menuDoor.isOpening = true;
+        yield return new WaitForSeconds(2);
+		GameManager.Instance.m_stateGameMenu.PlayGame();
+        
+    }
 }

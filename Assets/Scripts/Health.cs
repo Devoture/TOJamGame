@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
 	public float m_maxHealth = 100.0f;
+	public bool m_hasBeenHit;
+	public bool m_isPlayer;
+
+	public Image M_healthfill;
 	
 	private float m_currHealth;
 
@@ -13,10 +18,17 @@ public class Health : MonoBehaviour {
 	}
 
 	public void TakeDamage(float damage) {
-		m_currHealth -= damage;
-		if(m_currHealth <= 0) {
-			m_currHealth = 0;
-			Dead();
+		if(!m_hasBeenHit) {
+			m_currHealth -= damage;
+			m_hasBeenHit = true;
+			if(m_currHealth <= 0) {
+				m_currHealth = 0;
+				Dead();
+			}
+			if(m_isPlayer){
+				UpdateHUD();
+			}
+			Debug.Log(m_currHealth);
 		}
 	}
 
@@ -25,9 +37,15 @@ public class Health : MonoBehaviour {
 		if(m_currHealth >= m_maxHealth) {
 			m_currHealth = m_maxHealth;
 		}
+		if(m_isPlayer){
+			UpdateHUD();
+		}
 	}
 
 	void Dead() {
-		Debug.Log("dead");
+	}
+
+	void UpdateHUD() {
+		M_healthfill.fillAmount = (float)m_currHealth / (float)m_maxHealth;
 	}
 }
