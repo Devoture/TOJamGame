@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class Health : MonoBehaviour {
 	public bool m_hasBeenHit;
 	public SwordCollider m_colliderScript;
 	public bool m_isPlayer;
+
+	public Image M_healthfill;
 	
 	private float m_currHealth;
 
@@ -44,6 +47,6 @@ public class Health : MonoBehaviour {
 	}
 
 	void UpdateHUD() {
-
+		M_healthfill.fillAmount = (float)m_currHealth / (float)m_maxHealth;
 	}
 }

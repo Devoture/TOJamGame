@@ -13,27 +13,39 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_pullForce = 200.0f;
 	public float m_pushForce = 100.0f;
 	public bool m_isBlackhole = false;
-	public float m_rotationSpeed = 5.0f;
 	public Collider m_swordCollider;
 	public float m_damage;
 	public bool m_dashAttack;
 	public float m_dashTimeLength = 1.0f;
 	public float m_dashSpeed = 40.0f;
+	public float m_normalSpeed;
+	public float m_blackholeDamage = 100.0f;
+	public float m_fireballMana = 10.0f;
+	public float m_blackholeMana = 40.0f;
+	public float m_blinkMana = 20.0f;
+	public float m_dashStrikeMana = 10.0f;
+
 
 	private bool m_heroicLeeping = false;
 	private NavMeshAgent agent;
 	private Animator m_animator;
 	private Rigidbody m_rb;
+	private ClicktoMove m_movementScript;
+	private ManaScript m_manaScript;
 
 	void Start() {
 		agent = GetComponent<NavMeshAgent>();
 		m_animator = GetComponent<Animator>();
 		m_rb = GetComponent<Rigidbody>();
+		m_movementScript = GetComponent<ClicktoMove>();
+		m_manaScript = GetComponent<ManaScript>();
 	}
 
 	void Update() {
 		if(Input.GetKeyDown(KeyCode.Q)) {
-			m_animator.SetTrigger("spellCast");
+			if(m_manaScript.GetMana() >= m_fireballMana) {
+				m_animator.SetTrigger("spellCast");
+			}
 		}
 
 		if(Input.GetKeyDown(KeyCode.W)) {
@@ -53,7 +65,7 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 
 		if(m_dashAttack) {
-			transform.Translate(Vector3.forward * m_dashSpeed);
+			agent.speed = m_dashSpeed;
 		}
 	}
 
@@ -73,15 +85,17 @@ public class CharacterAbilities : MonoBehaviour {
 				if(collider.gameObject.tag == "Enemy") {
 					Vector3 forceDirection = transform.position + collider.transform.position;
 					collider.GetComponent<Rigidbody>().AddForce(forceDirection * m_pushForce * Time.fixedDeltaTime);
+					collider.GetComponent<Health>().TakeDamage(m_blackholeDamage);
 				}
 			}
 		}
 	}
 
 	public void FireBall() {
+		m_manaScript.UseMana(m_fireballMana);
 		agent.isStopped = true;
-		m_animator.SetBool("isMoving", false);
 		transform.LookAt(GetMousePos());
+		m_animator.SetBool("isMoving", false);
 		agent.destination = GetMousePos();
 		GameObject fireball = Instantiate(m_fireballPrefab, m_fireballSpawnPoint.position, Quaternion.identity);
 		fireball.transform.LookAt(GetMousePos());
@@ -89,11 +103,14 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void Blink() {
-		agent.isStopped = true;
-		m_animator.SetBool("isMoving", false);
-		transform.LookAt(GetMousePos());
-		transform.position = GetMousePos();
-		agent.destination = GetMousePos();
+		if(m_manaScript.GetMana() >= m_blinkMana) {
+			m_manaScript.UseMana(m_blinkMana);
+			agent.isStopped = true;
+			m_animator.SetBool("isMoving", false);
+			transform.LookAt(GetMousePos());
+			transform.position = GetMousePos();
+			agent.destination = GetMousePos();
+		}
 	}
 
 	public void HeroicLeap() {
@@ -103,27 +120,35 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void Blackhole() {
-		m_isBlackhole = true;
+		if(m_manaScript.GetMana() >= m_blackholeMana) {
+			m_manaScript.UseMana(m_blackholeMana);
+			m_isBlackhole = true;
+		}
 	}
 
 	public void DashAttack() {
-		transform.LookAt(GetMousePos());
-		agent.destination = GetMousePos();
-		m_dashAttack = true;
-		StartCoroutine(DashTimer(m_dashTimeLength));
-		m_damage = 100.0f;
-		m_animator.SetBool("isDashing", true);
-		m_swordCollider.enabled = true;
+		if(m_manaScript.GetMana() >= m_dashStrikeMana) {
+			m_manaScript.UseMana(m_dashStrikeMana);
+			agent.isStopped = false;
+			m_movementScript.m_disableMovement = true;
+			transform.LookAt(GetMousePos());
+			agent.destination = GetMousePos();
+			m_dashAttack = true;
+			StartCoroutine(DashTimer(m_dashTimeLength));
+			m_damage = 100.0f;
+			m_animator.SetBool("isDashing", true);
+			m_swordCollider.enabled = true;
+		}
 	}
 
 	public void DashEnd() {
+		m_movementScript.m_disableMovement = false;
+		agent.speed = m_normalSpeed;
 		m_dashAttack = false;
 		m_animator.SetBool("isDashing", false);
 		m_swordCollider.enabled = false;
 		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
 			enemy.GetComponent<Health>().m_hasBeenHit = false;
-			Debug.Log(enemy.name);
-			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
 		}
 		
 		for(int i = m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i > 0; i--) {
@@ -142,8 +167,6 @@ public class CharacterAbilities : MonoBehaviour {
 		m_swordCollider.enabled = false;
 		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
 			enemy.GetComponent<Health>().m_hasBeenHit = false;
-			Debug.Log(enemy.name);
-			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
 		}
 		
 		for(int i = m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i > 0; i--) {
