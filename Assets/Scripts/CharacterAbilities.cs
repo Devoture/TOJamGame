@@ -15,14 +15,20 @@ public class CharacterAbilities : MonoBehaviour {
 	public bool m_isBlackhole = false;
 	public float m_rotationSpeed = 5.0f;
 	public Collider m_swordCollider;
+	public float m_damage;
+	public bool m_dashAttack;
+	public float m_dashTimeLength = 1.0f;
+	public float m_dashSpeed = 40.0f;
 
 	private bool m_heroicLeeping = false;
 	private NavMeshAgent agent;
 	private Animator m_animator;
+	private Rigidbody m_rb;
 
 	void Start() {
 		agent = GetComponent<NavMeshAgent>();
 		m_animator = GetComponent<Animator>();
+		m_rb = GetComponent<Rigidbody>();
 	}
 
 	void Update() {
@@ -35,7 +41,7 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.E)) {
-			m_animator.SetTrigger("hLeap");
+			DashAttack();
 		}
 
 		if(Input.GetKeyDown(KeyCode.R)) {
@@ -44,6 +50,10 @@ public class CharacterAbilities : MonoBehaviour {
 
 		if(Input.GetMouseButtonDown(1)) {
 			AutoAttack();
+		}
+
+		if(m_dashAttack) {
+			transform.Translate(Vector3.forward * m_dashSpeed);
 		}
 	}
 
@@ -96,7 +106,33 @@ public class CharacterAbilities : MonoBehaviour {
 		m_isBlackhole = true;
 	}
 
+	public void DashAttack() {
+		transform.LookAt(GetMousePos());
+		agent.destination = GetMousePos();
+		m_dashAttack = true;
+		StartCoroutine(DashTimer(m_dashTimeLength));
+		m_damage = 100.0f;
+		m_animator.SetBool("isDashing", true);
+		m_swordCollider.enabled = true;
+	}
+
+	public void DashEnd() {
+		m_dashAttack = false;
+		m_animator.SetBool("isDashing", false);
+		m_swordCollider.enabled = false;
+		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
+			enemy.GetComponent<Health>().m_hasBeenHit = false;
+			Debug.Log(enemy.name);
+			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
+		}
+		
+		for(int i = m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i > 0; i--) {
+			m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.RemoveAt(0);
+		}
+	}
+
 	public void AutoAttack() {
+		m_damage = 50.0f;
 		m_animator.SetBool("isAuto", true);
 		m_swordCollider.enabled = true;
 	}
@@ -123,4 +159,9 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 		return mousePos;
 	}
+
+	private IEnumerator DashTimer(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		DashEnd();
+    }
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 26a4b2425bb51e54ca7f125c91711c52
-timeCreated: 1525575742
+guid: 7edcbd58d8759824cb9a7fafc4d85c44
+timeCreated: 1525575743
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -141,7 +141,7 @@ ModelImporter:
     400130: Bip001 Spine1
     400132: Bip001 Spine2
     400134: //RootNode
-    7400000: mixamo.com
+    7400000: Great Sword Slash
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -169,7 +169,42 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Great Sword Slash
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 76
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: StopAuto
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -620,15 +655,15 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Elf_Mesh@Great Sword High Spin Attack(Clone)
+    - name: Elf_Mesh@Great Sword Slash(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -0.06798083, y: -0.18174568, z: -0.06582621, w: 0.97878194}
+      rotation: {x: 0.0026807415, y: -0.1363684, z: -0.010467446, w: 0.9905993}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001
-      parentName: Elf_Mesh@Great Sword High Spin Attack(Clone)
-      position: {x: -0.002663806, y: 0.81849694, z: -0.024753297}
-      rotation: {x: -0.3621012, y: 0.49115384, z: 0.6675834, w: 0.4265947}
+      parentName: Elf_Mesh@Great Sword Slash(Clone)
+      position: {x: -0.003667192, y: 0.83144855, z: -0.018886702}
+      rotation: {x: -0.40258375, y: 0.5361922, z: 0.58985573, w: 0.44999394}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Footsteps
       parentName: Bip001
@@ -637,7 +672,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Pelvis
       parentName: Bip001
-      position: {x: 0.015500672, y: 0.13181654, z: 0.14364761}
+      position: {x: 0.012158529, y: 0.018208504, z: 0.11267746}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Spine
