@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestTextHEre : MonoBehaviour {
+public class QuestTextHere : MonoBehaviour {
 
 	string quest1 = "These gruesome murders threaten the stability of the entire country, the killer must be stopped. There are 3 prime suspects Rothgar of the Dwarven Smiths, Miridel of the Elven Order of the Forests and Arch Mage Doren. Investigate the 3 and discover the truth";
 	string quest1Objective = "Complete 1 task for each suspect";
