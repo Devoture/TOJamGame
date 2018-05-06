@@ -14,6 +14,7 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_pushForce = 100.0f;
 	public bool m_isBlackhole = false;
 	public float m_rotationSpeed = 5.0f;
+	public Collider m_swordCollider;
 
 	private bool m_heroicLeeping = false;
 	private NavMeshAgent agent;
@@ -26,7 +27,7 @@ public class CharacterAbilities : MonoBehaviour {
 
 	void Update() {
 		if(Input.GetKeyDown(KeyCode.Q)) {
-			FireBall();
+			m_animator.SetTrigger("spellCast");
 		}
 
 		if(Input.GetKeyDown(KeyCode.W)) {
@@ -34,11 +35,15 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.E)) {
-			HeroicLeap();
+			m_animator.SetTrigger("hLeap");
 		}
 
 		if(Input.GetKeyDown(KeyCode.R)) {
 			Blackhole();
+		}
+
+		if(Input.GetMouseButtonDown(1)) {
+			AutoAttack();
 		}
 	}
 
@@ -63,13 +68,17 @@ public class CharacterAbilities : MonoBehaviour {
 		}
 	}
 
-	void FireBall() {
+	public void FireBall() {
+		agent.isStopped = true;
+		m_animator.SetBool("isMoving", false);
+		transform.LookAt(GetMousePos());
+		agent.destination = GetMousePos();
 		GameObject fireball = Instantiate(m_fireballPrefab, m_fireballSpawnPoint.position, Quaternion.identity);
 		fireball.transform.LookAt(GetMousePos());
 		fireball.GetComponent<Rigidbody>().velocity = fireball.transform.forward * m_fireballSpeed;
 	}
 
-	void Blink() {
+	public void Blink() {
 		agent.isStopped = true;
 		m_animator.SetBool("isMoving", false);
 		transform.LookAt(GetMousePos());
@@ -77,14 +86,33 @@ public class CharacterAbilities : MonoBehaviour {
 		agent.destination = GetMousePos();
 	}
 
-	void HeroicLeap() {
+	public void HeroicLeap() {
 		agent.isStopped = true;
 		m_animator.SetBool("isMoving", false);
 		transform.position = GetMousePos();
 	}
 
-	void Blackhole() {
+	public void Blackhole() {
 		m_isBlackhole = true;
+	}
+
+	public void AutoAttack() {
+		m_animator.SetBool("isAuto", true);
+		m_swordCollider.enabled = true;
+	}
+
+	public void StopAuto() {
+		m_animator.SetBool("isAuto", false);
+		m_swordCollider.enabled = false;
+		foreach(GameObject enemy in m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit) {
+			enemy.GetComponent<Health>().m_hasBeenHit = false;
+			Debug.Log(enemy.name);
+			Debug.Log(m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count);
+		}
+		
+		for(int i = m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.Count; i > 0; i--) {
+			m_swordCollider.GetComponent<SwordCollider>().m_enemiesHit.RemoveAt(0);
+		}
 	}
 
 	Vector3 GetMousePos() {
