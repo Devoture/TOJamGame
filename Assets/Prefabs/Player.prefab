@@ -2239,6 +2239,15 @@ MonoBehaviour:
   m_blackholeMana: 40
   m_blinkMana: 20
   m_dashStrikeMana: 10
+  m_knockBackTimer: 2
+  m_blackholeCD: 5
+  m_fireballCD: 5
+  m_dashStrikeCD: 5
+  m_blinkCD: 5
+  m_canBlink: 1
+  m_canDash: 1
+  m_canBlackhole: 1
+  m_canFireball: 1
 --- !u!114 &114401021530398264
 MonoBehaviour:
   m_ObjectHideFlags: 1

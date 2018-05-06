@@ -5869,6 +5869,21 @@ Prefab:
       propertyPath: m_manaFill
       value: 
       objectReference: {fileID: 1762679625}
+    - target: {fileID: 114123210112057346, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
+        type: 2}
+      propertyPath: m_fireballCD
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114123210112057346, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
+        type: 2}
+      propertyPath: m_dashStrikeCD
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114123210112057346, guid: 2abb91e4e404b9845a8ea3b28aadc22b,
+        type: 2}
+      propertyPath: m_blinkCD
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2abb91e4e404b9845a8ea3b28aadc22b, type: 2}
   m_IsPrefabParent: 0

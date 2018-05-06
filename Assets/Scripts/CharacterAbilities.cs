@@ -25,6 +25,14 @@ public class CharacterAbilities : MonoBehaviour {
 	public float m_blinkMana = 20.0f;
 	public float m_dashStrikeMana = 10.0f;
 	public float m_knockBackTimer = 2.0f;
+	public float m_blackholeCD = 5.0f;
+	public float m_fireballCD = 1.0f;
+	public float m_dashStrikeCD = 2.0f;
+	public float m_blinkCD = 4.0f;
+	public bool m_canBlink = true;
+	public bool m_canDash = true;
+	public bool m_canBlackhole = true;
+	public bool m_canFireball = true;
 
 
 	private bool m_heroicLeeping = false;
@@ -43,21 +51,23 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	void Update() {
-		if(Input.GetKeyDown(KeyCode.Q)) {
+		if(Input.GetKeyDown(KeyCode.Q) && m_canFireball) {
 			if(m_manaScript.GetMana() >= m_fireballMana) {
 				m_animator.SetTrigger("spellCast");
+				m_canFireball = false;
+				StartCoroutine(FireballCD(m_fireballCD));
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.W)) {
+		if(Input.GetKeyDown(KeyCode.W) && m_canBlink) {
 			Blink();
 		}
 
-		if(Input.GetKeyDown(KeyCode.E)) {
+		if(Input.GetKeyDown(KeyCode.E) && m_canDash) {
 			DashAttack();
 		}
 
-		if(Input.GetKeyDown(KeyCode.R)) {
+		if(Input.GetKeyDown(KeyCode.R) && m_canBlackhole) {
 			Blackhole();
 		}
 
@@ -82,6 +92,7 @@ public class CharacterAbilities : MonoBehaviour {
 	}
 
 	public void FireBall() {
+		// doesnt need mana check here its done on key press
 		m_manaScript.UseMana(m_fireballMana);
 		agent.isStopped = true;
 		transform.LookAt(GetMousePos());
@@ -94,6 +105,8 @@ public class CharacterAbilities : MonoBehaviour {
 
 	public void Blink() {
 		if(m_manaScript.GetMana() >= m_blinkMana) {
+			m_canBlink = false;
+			StartCoroutine(BlinkCD(m_blinkCD));
 			m_manaScript.UseMana(m_blinkMana);
 			agent.isStopped = true;
 			m_animator.SetBool("isMoving", false);
@@ -111,6 +124,8 @@ public class CharacterAbilities : MonoBehaviour {
 
 	public void Blackhole() {
 		if(m_manaScript.GetMana() >= m_blackholeMana) {
+			StartCoroutine(BlackholeCD(m_blackholeCD));
+			m_canBlackhole = false;
 			m_manaScript.UseMana(m_blackholeMana);
 			m_isBlackhole = true;
 			StartCoroutine(BlackholeKnockbackTimer(m_knockBackTimer));
@@ -119,6 +134,8 @@ public class CharacterAbilities : MonoBehaviour {
 
 	public void DashAttack() {
 		if(m_manaScript.GetMana() >= m_dashStrikeMana) {
+			m_canDash = false;
+			StartCoroutine(DashCD(m_dashStrikeCD));
 			m_manaScript.UseMana(m_dashStrikeMana);
 			agent.isStopped = false;
 			m_movementScript.m_disableMovement = true;
@@ -193,5 +210,25 @@ public class CharacterAbilities : MonoBehaviour {
 		yield return new WaitForSeconds(waitTime);
 		m_isBlackhole = false;
 		m_animator.SetTrigger("afterBlackhole");
+    }
+
+	private IEnumerator BlackholeCD(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		m_canBlackhole = true;
+    }
+
+	private IEnumerator FireballCD(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		m_canFireball = true;
+    }
+
+	private IEnumerator DashCD(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		m_canDash = true;
+    }
+
+	private IEnumerator BlinkCD(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		m_canBlink = true;
     }
 }
