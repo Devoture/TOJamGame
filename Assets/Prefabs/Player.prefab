@@ -163,7 +163,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1150219739457864
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -1529,12 +1529,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1150219739457864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 1.55, z: 3.87}
+  m_LocalRotation: {x: -0.09510386, y: 0.053752817, z: -0.9619296, w: 0.250514}
+  m_LocalPosition: {x: 1.7425895, y: -0.07059336, z: 3.6742961}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4652696126319360}
-  m_RootOrder: 2
+  m_Father: {fileID: 4776114086248510}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4458353103634090
 Transform:
@@ -1737,12 +1737,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981948349036346}
   m_LocalRotation: {x: -0, y: 0.04212198, z: -0, w: 0.99911255}
-  m_LocalPosition: {x: 926, y: 20.4, z: 658.5}
+  m_LocalPosition: {x: 1010, y: 707.13, z: 1392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4733958421395418}
   - {fileID: 4545687367169280}
-  - {fileID: 4449360431158980}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 182.31, z: 0}
@@ -1870,6 +1869,7 @@ Transform:
   - {fileID: 4133887207697472}
   - {fileID: 4675271549128834}
   - {fileID: 4527249565194572}
+  - {fileID: 4449360431158980}
   m_Father: {fileID: 4531060698573516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2107,6 +2107,7 @@ MonoBehaviour:
   m_pullForce: 500
   m_pushForce: 100
   m_isBlackhole: 0
+  m_rotationSpeed: 5
 --- !u!114 &114434260103830334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2237,8 +2238,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 10
+  m_Speed: 5
+  m_Acceleration: 400
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 829d6f29493f2844d944504f618d497f
-timeCreated: 1525492854
+guid: 42dbdea7a060b964c894e2546f192552
+timeCreated: 1525564358
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -141,7 +141,7 @@ ModelImporter:
     400130: Bip001 Spine1
     400132: Bip001 Spine2
     400134: //RootNode
-    7400000: Standing Run Forward
+    7400000: Great Sword Jump
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -162,7 +162,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -171,17 +171,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Run Forward
+      name: Great Sword Jump
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 44
+      lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -193,7 +193,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.47059655
+        functionName: HeroicLeap
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -648,15 +655,15 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Elf_Mesh@Standing Run Forward(Clone)
+    - name: Elf_Mesh@Great Sword Jump(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -0.011715964, y: -0.30298528, z: -0.026972687, w: 0.9525414}
+      rotation: {x: 0.0028077501, y: -0.12432036, z: -0.01043417, w: 0.9921833}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001
-      parentName: Elf_Mesh@Standing Run Forward(Clone)
-      position: {x: -0.0029185405, y: 0.76584977, z: -0.0048254333}
-      rotation: {x: -0.29716378, y: 0.59050417, z: 0.66403013, w: 0.3493744}
+      parentName: Elf_Mesh@Great Sword Jump(Clone)
+      position: {x: -0.0032071536, y: 0.8314487, z: -0.018970234}
+      rotation: {x: -0.40972212, y: 0.5306841, z: 0.5849199, w: 0.45647654}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Footsteps
       parentName: Bip001
@@ -665,7 +672,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Pelvis
       parentName: Bip001
-      position: {x: 0.01933704, y: 0.045194343, z: 0.17920287}
+      position: {x: 0.012158511, y: 0.018208578, z: 0.11267735}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Spine
@@ -1000,8 +1007,7 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3e95cca3262255142af958220e7458d3,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
   humanoidOversampling: 1
   additionalBone: 0

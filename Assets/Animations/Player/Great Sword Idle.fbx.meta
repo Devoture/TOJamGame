@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 829d6f29493f2844d944504f618d497f
-timeCreated: 1525492854
+guid: 84314ea58e051534ba7ee87aa0cec32d
+timeCreated: 1525559036
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -141,7 +141,7 @@ ModelImporter:
     400130: Bip001 Spine1
     400132: Bip001 Spine2
     400134: //RootNode
-    7400000: Standing Run Forward
+    7400000: mixamo.com
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -162,7 +162,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -171,10 +171,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Run Forward
+      name: mixamo.com
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 44
+      lastFrame: 453
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -648,15 +648,15 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Elf_Mesh@Standing Run Forward(Clone)
+    - name: Great Sword Idle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
-      rotation: {x: -0.011715964, y: -0.30298528, z: -0.026972687, w: 0.9525414}
+      rotation: {x: 0.0026807918, y: -0.1363684, z: -0.01046736, w: 0.9905993}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001
-      parentName: Elf_Mesh@Standing Run Forward(Clone)
-      position: {x: -0.0029185405, y: 0.76584977, z: -0.0048254333}
-      rotation: {x: -0.29716378, y: 0.59050417, z: 0.66403013, w: 0.3493744}
+      parentName: Great Sword Idle(Clone)
+      position: {x: -0.003665578, y: 0.8314488, z: -0.018887255}
+      rotation: {x: -0.40258372, y: 0.53619224, z: 0.5898557, w: 0.44999394}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Footsteps
       parentName: Bip001
@@ -665,7 +665,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Pelvis
       parentName: Bip001
-      position: {x: 0.01933704, y: 0.045194343, z: 0.17920287}
+      position: {x: 0.0121585075, y: 0.018210053, z: 0.112677254}
       rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001 Spine
@@ -1000,8 +1000,7 @@ ModelImporter:
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3e95cca3262255142af958220e7458d3,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
